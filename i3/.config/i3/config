@@ -34,11 +34,15 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# set display configuration
+# Set display configuration
 exec --no-startup-id ~/.screenlayout/display.sh
 
 # picom
 exec --no-startup-id picom -b
+
+# Disable screen blanking and sleep
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s off
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
