@@ -6,3 +6,5 @@ ln -sf ~/.dotfiles/tmux/.tmux.conf ~/.tmux.conf
 tmux source-file ~/.tmux.conf
 
 ln -sf ~/.dotfiles/vscode/.config/Code/User/settings.json ~/.config/Code/User/settings.json
+
+ln -sf ~/.dotfiles/alacritty/.config/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml

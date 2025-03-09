@@ -1,4 +1,10 @@
 {
+    "[python]": {
+        "editor.tabSize": 4
+    },
+    "autopep8.args": [
+        "--max-line-length=120"
+    ],
     "C_Cpp.formatting": "clangFormat",
     "cmake.pinnedCommands": [
         "workbench.action.tasks.configureTaskRunner",
@@ -20,7 +26,7 @@
         "reportUnknownParameterType": "warning",
         "reportUnknownVariableType": "warning",
         "reportUnusedImport": "warning",
-        "reportUnusedVariable": "warning",
+        "reportUnusedVariable": "warning"
     },
     "python.analysis.typeCheckingMode": "strict",
     "security.workspace.trust.untrustedFiles": "open",
