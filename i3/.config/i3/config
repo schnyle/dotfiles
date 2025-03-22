@@ -74,6 +74,9 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
+# disable focus follows mouse so that window focus persists through changing monitor
+focus_follows_mouse no
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+h focus down
