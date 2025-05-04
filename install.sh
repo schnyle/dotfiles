@@ -3,6 +3,7 @@ ln -sf ~/.dotfiles/alacritty/.config/alacritty/alacritty.toml ~/.config/alacritt
 ln -sf ~/.dotfiles/bash/.bashrc ~/.bashrc
 
 ln -sf ~/.dotfiles/i3/.config/i3/config ~/.config/i3/config
+ln -sf ~/.dotfiles/i3/.config/i3status/config ~/.config/i3status/config
 
 ln -sf ~/.dotfiles/picom/.config/picom.conf ~/.config/picom.conf
 
