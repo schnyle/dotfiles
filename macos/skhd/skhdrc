@@ -1,0 +1,15 @@
+# toggle window fullscreen
+ctrl - f : yabai -m window --toggle zoom-fullscreen
+
+# move managed window
+ctrl + shift - k : yabai -m window --warp east
+ctrl + shift - k : yabai -m window --warp east
+
+# focus window
+ctrl -h : yabai -m window --focus south
+ctrl -k : yabai -m window --focus east
+ctrl -j : yabai -m window --focus west
+ctrl -l : yabai -m window --focus north
+
+# balance size of windows
+ctrl + shift - b : yabai -m space --balance
