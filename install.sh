@@ -7,5 +7,5 @@ for dir in */; do
     continue
   fi
 
-  stow $dir -t ~/test-stow
+  stow $dir -R
 done
