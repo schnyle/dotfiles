@@ -33,5 +33,7 @@
     "workbench.editor.enablePreview": false,
     "workbench.iconTheme": "vscode-icons",
     "workbench.sideBar.location": "right",
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "editor.fontFamily": "Source Code Pro",
+    "explorer.confirmDelete": false
 }
