@@ -1,0 +1,49 @@
+[font]
+size = 10.0
+
+[font.bold]
+family = "Source Code Pro"
+style = "Bold"
+
+[font.italic]
+family = "Source Code Pro"
+style = "Italic"
+
+[font.normal]
+family = "Source Code Pro"
+style = "Regular"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"
+
+[colors.normal]
+black = "#000000"
+red = "#dc3232"
+green = "#32c832"
+yellow = "#f0c832"
+blue = "#3264dc"
+magenta = "#c832c8"
+cyan = "#32c8c8"
+white = "#dcdcdc"
+
+[colors.bright]
+black = "#646464"
+red = "#ff5a5a"
+green = "#5aff5a"
+yellow = "#ffff5a"
+blue = "#5a8cff"
+magenta = "#ff5aff"
+cyan = "#5affff"
+white = "#ffffff"
+
+[keyboard]
+bindings = [
+  { key = "V", mods = "Command", action = "action" },
+  { key = "L", mods = "Command", chars = "\u000C" },
+  { key = "C", mods = "Command", chars = "\u0003" },
+  { key = "B", mods = "Command", chars = "\u0002" },
+  { key = "O", mods = "Command", chars = "\u000F" },
+  { key = "I", mods = "Command", chars = "\u0009" },
+  { key = "Y", mods = "Command", chars = "\u0019" },
+]
