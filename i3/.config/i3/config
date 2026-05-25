@@ -41,9 +41,10 @@ exec --no-startup-id ~/.screenlayout/display.sh
 # picom
 exec --no-startup-id picom -b
 
-# Disable screen blanking and sleep
-exec --no-startup-id xset -dpms
-exec --no-startup-id xset s off
+# X server settings
+exec --no-startup-id xset -dpms         # disable display power management (no monitor sleep)
+exec --no-startup-id xset s off         # disable screensaver
+exec --no-startup-id xset r rate 200 60 # key repeat: 200ms delay, 60/sec
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
