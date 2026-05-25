@@ -231,6 +231,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Auto-compile LaTeX on save
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.tex',
+  callback = function()
+    vim.cmd 'silent !latexmk -pdf %'
+  end,
+  desc = 'Compile LaTeX file on save with latexmk',
+})
+
+-- Enable spell check for LaTeX and Markdown files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'tex', 'markdown' },
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = 'en_us'
+  end,
+  desc = 'Enable spell check for text files',
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -300,13 +319,12 @@ require('lazy').setup({
     'sindrets/diffview.nvim',
     cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
     config = function()
-      require('diffview').setup({
+      require('diffview').setup {
         enhanced_diff_hl = true,
         use_icons = vim.g.have_nerd_font,
-      })
+      }
     end,
   },
-
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -322,7 +340,7 @@ require('lazy').setup({
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
-  {                     -- Useful plugin to show you pending keybinds.
+  { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -403,7 +421,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -511,7 +529,7 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim',    opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
@@ -695,10 +713,11 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        clangd = {},
-        bashls = { filetypes = { "sh", "bash" } },
+        clangd = { filetypes = { 'c', 'h', 'cpp' } },
+        bashls = { filetypes = { 'sh', 'bash' } },
         gopls = {},
         pyright = {},
+        texlab = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -807,7 +826,9 @@ require('lazy').setup({
         sh = { 'shfmt' },
         go = { 'gofumpt' },
         python = { 'ruff_format' },
+        c = { 'clang_format' },
         cpp = { 'clang-format' },
+        tex = { 'latexindent' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -938,6 +959,9 @@ require('lazy').setup({
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'tokyonight-night'
+
+      -- Red underline for misspelled words (only applies to some file types)
+      vim.api.nvim_set_hl(0, 'SpellBad', { fg = '#ff0000', undercurl = true })
     end,
   },
 
@@ -984,7 +1008,7 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     lazy = false,
-    build = ':TSUpdate'
+    build = ':TSUpdate',
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --
@@ -997,7 +1021,7 @@ require('lazy').setup({
     'nvim-tree/nvim-tree.lua',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require('nvim-tree').setup({
+      require('nvim-tree').setup {
         view = {
           adaptive_size = true,
           -- width = 30,
@@ -1009,7 +1033,7 @@ require('lazy').setup({
         filters = {
           dotfiles = false,
         },
-      })
+      }
     end,
     keys = {
       { '<leader>e', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle file [E]xplorer' },
