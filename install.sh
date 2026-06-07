@@ -1,18 +1,18 @@
 #!/bin/bash
 
-cd "$(dirname $0)"
+cd "$(dirname "$0")" || exit 1
 
+failed=0
 for dir in */; do
-  # skip files in ignore/ (mac config files)
-  if [[ "$dir" == "ignore/" ]]; then
-    continue
-  fi
+  [[ "$dir" == "ignore/" ]] && continue
 
-  # remove config file if already exists
-  find "$dir" -type f | while read file; do
+  find "$dir" -type f | while read -r file; do
     target="$HOME/${file#*/}"
     [[ -f "$target" ]] && rm "$target"
   done
 
-  stow $dir -R
+  stow "$dir" -R || failed=1
 done
+
+exit $failed
+
